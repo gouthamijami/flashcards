@@ -1,0 +1,68 @@
+/* Container for all flashcards */
+#flashcard-area {
+    display: flex;
+    flex-direction: column; /* Stack flashcard containers vertically */
+    align-items: center; /* Center all flashcards horizontally */
+    gap: 20px; /* Space between flashcards */
+    padding: 20px; /* Optional: Add some padding around the area */
+}
+
+/* Individual flashcard container */
+.flashcard-container {
+    perspective: 1000px; /* Perspective effect for 3D flip */
+    display: flex;
+    justify-content: center; /* Center flashcard horizontally */
+    width: 100%; /* Full width for the container */
+    max-width: 320px; /* Max width for the container */
+}
+
+/* Flashcard styling */
+.flashcard {
+    width: 300px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    margin: 0 auto; /* Center flashcard within its container */
+}
+
+/* Inner wrapper for flipping effect */
+.flashcard-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    top: 0;
+    left: 0;
+}
+
+/* Front and back sides of the flashcard */
+.flashcard-front, .flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box; /* Ensure padding is included in width/height */
+}
+
+.flashcard-front {
+    background-color: #f0f0f0;
+}
+
+.flashcard-back {
+    background-color: #4CAF50;
+    transform: rotateY(180deg); /* Back side hidden initially */
+}
+
+.flashcard.flip .flashcard-inner {
+    transform: rotateY(180deg); /* Flip effect */
+}
